@@ -15,7 +15,15 @@ export const appWriteConfig = {
   videoCollectionId: "67331cee000da4bcb3c1",
   storageId: "67331f18002afdf3c08b",
 };
-
+const {
+  endpoint,
+  platform,
+  projectId,
+  databaseId,
+  userCollectionId,
+  videoCollectionId,
+  storageId,
+} = appWriteConfig;
 // Init your React Native SDK
 const client = new Client();
 
@@ -76,11 +84,30 @@ export const getCurrentUser = async () => {
     const currentUser = await databases.listDocuments(
       appWriteConfig.databaseId,
       appWriteConfig.userCollectionId,
-      [Query.equal("accountId",currentAccount.$id)]
+      [Query.equal("accountId", currentAccount.$id)]
     );
-    if(!currentUser) throw new Error;
-    return currentUser.documents[0]
+    if (!currentUser) throw new Error();
+    return currentUser.documents[0];
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const getAllPosts = async () => {
+  try {
+    const posts = await databases.listDocuments(databaseId, videoCollectionId);
+    return posts.documents;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+export const getLatestPosts = async () => {
+  try {
+    const posts = await databases.listDocuments(databaseId, videoCollectionId, [
+      Query.orderDesc("$createdAt", Query.limit(7)),
+    ]);
+    return posts.documents;
+  } catch (error: any) {
+    throw new Error(error);
   }
 };

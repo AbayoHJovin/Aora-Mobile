@@ -14,14 +14,16 @@
     },
     "ios": {
       "supportsTablet": true,
-      "package":"com.jovix.aora"
+      "package": "com.jovix.aora",
+      "hermesEnabled": false
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package":"com.jovix.aora"
+      "package": "com.jovix.aora",
+      "hermesEnabled": false
     },
     "web": {
       "bundler": "metro",
@@ -30,7 +32,8 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      "react-native-video"
     ],
     "experiments": {
       "typedRoutes": true

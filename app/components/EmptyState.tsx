@@ -26,6 +26,8 @@ const EmptyState = ({ title, subtitle }: propsInt) => {
         text="Create a video"
         handlePress={() => router.push("/(tabs)/create")}
         containerStyle="w-full my-5"
+        textStyles=""
+        isLoading={false}
       />
     </View>
   );
